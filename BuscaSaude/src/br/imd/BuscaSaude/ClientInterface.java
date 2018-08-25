@@ -92,57 +92,97 @@ public class ClientInterface
 						break;
 						
 					case 4: // Buscar
-						System.out.print("\nBuscar Unidades de Saude");
-
-						// Exibir opcoes de criterios de busca
-						System.out.print("\n\nCriterios de Busca");
-						System.out.print("\n1-Nome\n2-Endereco\n3-Bairro\n4-Especialidades\n5-Listar Todos\n6-Voltar");
-						System.out.print("\n\nEscolha um criterio de busca: ");
-
-						// Escolher uma das opcoes
 						
-						int criterio = input.nextInt();
-						input.nextLine(); 
+						int criterio = 1;
 						
-						switch( criterio ){
-						
-							case 1: // Busca por nome
-								System.out.println("Busca por Nome.");
-							break;
+						while( criterio != 6 ){
 							
-							case 2: // Busca por endereco
-								System.out.println("Busca por Endereco.");
-							break;
-							
-							case 3: // Busca por bairro
-								System.out.println("Busca por Bairro.");								
-							break;
+							System.out.print("\nBuscar Unidades de Saude");
 
-							case 4: // Busca por especialidade
-								System.out.println("Busca por Especialidades.");
-							break;
+							// Exibir opcoes de criterios de busca
+							System.out.print("\n\nCriterios de Busca");
+							System.out.print("\n1-Nome\n2-Endereco\n3-Bairro\n4-Especialidades\n5-Listar Todos\n6-Voltar");
+							System.out.print("\n\nEscolha um criterio de busca: ");
+
+							// Escolher uma das opcoes
 							
-							case 5: // Listar Todos
-								imprimirLista( stub.getUnidades() );
-							break;
+							criterio = input.nextInt();
+							input.nextLine(); 
+							String busca;
+							ArrayList<UnidadeSaude> resultadoBusca;
 							
-							case 6:	// Sair
-								System.out.println("Voltando para o menu inicial.");
-							break;
+							switch( criterio ){
 							
-							default:
-								System.out.println("Opcao invalida. Por favor, tente novamente.");
+								case 1: // Busca por nome
+									
+									System.out.println("Busca por Nome.");
+									
+									System.out.print("\nDigite o Nome: ");
+									busca = input.nextLine();
+									
+									resultadoBusca = stub.buscar(1, busca);
+									System.out.println("Resultado da Busca: ");
+									imprimirLista(resultadoBusca);
+									
+								break;
+								
+								case 2: // Busca por endereco
+									System.out.println("Busca por Endereco.");
+
+									System.out.print("\nDigite o Endereco: ");
+									busca = input.nextLine();
+									
+									resultadoBusca = stub.buscar(2, busca);
+									System.out.println("Resultado da Busca: ");
+									imprimirLista(resultadoBusca);
+								break;
+								
+								case 3: // Busca por bairro
+									System.out.println("Busca por Bairro.");	
+
+									System.out.print("\nDigite o Bairro: ");
+									busca = input.nextLine();
+									
+									resultadoBusca = stub.buscar(3, busca);	
+									
+									System.out.println("Resultado da Busca: ");
+									imprimirLista(resultadoBusca);					
+								break;
+
+								case 4: // Busca por especialidade
+									System.out.println("Busca por Especialidades.");
+
+									System.out.print("\nDigite a Especialidade: ");
+									busca = input.nextLine();
+									
+									resultadoBusca = stub.buscar(4, busca);
+									System.out.println("Resultado da Busca: ");
+									imprimirLista(resultadoBusca);
+								break;
+								
+								case 5: // Listar Todos
+									System.out.println("Unidades de Saude Cadastradas: ");
+									imprimirLista( stub.getUnidades() );
+								break;
+								
+								case 6:	// Sair
+									System.out.println("Voltando para o menu inicial.");
+								break;
+								
+								default:
+									System.out.println("Opcao invalida. Por favor, tente novamente.");
+							}
+							
 						}
+				break;
+							
+				case 5:	// Sair
+							System.out.println("O programa sera encerrado.");
+						return;
 						
-						break;
-						
-					case 5:	// Sair
-						System.out.println("O programa sera encerrado.");
-					return;
-					
-					default:
-						System.out.println("Opcao invalida. Por favor, tente novamente.");
-				}
+						default:
+							System.out.println("Opcao invalida. Por favor, tente novamente.");
+				}						
 			}
 		}
 		catch (Exception e){
@@ -156,13 +196,11 @@ public class ClientInterface
 	static void imprimirLista(ArrayList<UnidadeSaude> lista){
 		
 		if( lista.isEmpty() ) {
-			System.out.println("Nao ha unidades cadastradas");
+			//System.out.println("Lista Vazia");
 			return;
 		}
 		
 		Iterator<UnidadeSaude> inter1 = lista.iterator();
-	
-		System.out.println("\nUnidades de Saude Cadastradas");
 		
 		while (inter1.hasNext()) {
 			

@@ -78,7 +78,7 @@ public class Services extends UnicastRemoteObject implements IServices {
 					
 					unidadeSaudeIterator = (UnidadeSaude) inter1.next();
 							
-					if( unidadeSaudeIterator.getNome() == busca ) {
+					if( unidadeSaudeIterator.getNome().toLowerCase().contains(busca.toLowerCase()) ) {
 						returnList.add(unidadeSaudeIterator);
 					}		
 				}
@@ -87,7 +87,7 @@ public class Services extends UnicastRemoteObject implements IServices {
 				while (inter1.hasNext()) {	
 					unidadeSaudeIterator = (UnidadeSaude) inter1.next();
 						
-					if( unidadeSaudeIterator.getEndereco() == busca ) {
+					if( unidadeSaudeIterator.getEndereco().toLowerCase().contains(busca.toLowerCase()) ) {
 						returnList.add(unidadeSaudeIterator);
 					}		
 				}
@@ -96,7 +96,7 @@ public class Services extends UnicastRemoteObject implements IServices {
 				while (inter1.hasNext()) {	
 					unidadeSaudeIterator = (UnidadeSaude) inter1.next();
 						
-					if( unidadeSaudeIterator.getBairro() == busca ) {
+					if( unidadeSaudeIterator.getBairro().toLowerCase().contains(busca.toLowerCase())  ) {
 						returnList.add(unidadeSaudeIterator);
 					}		
 				}
@@ -111,7 +111,7 @@ public class Services extends UnicastRemoteObject implements IServices {
 					while (interListaEspecialidades.hasNext()) {
 						EspContentList = interListaEspecialidades.next();
 						
-						if(EspContentList.equals(busca)) {
+						if(EspContentList.toLowerCase().contains(busca.toLowerCase())) {
 							returnList.add(unidadeSaudeIterator);
 							break;
 						}
